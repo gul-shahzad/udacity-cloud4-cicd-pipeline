@@ -1,6 +1,6 @@
 pipeline {
      agent any
-     stages {
+    stages {
          stage('Build') {
              steps {
                  sh 'echo "Hello World"'
@@ -8,6 +8,11 @@ pipeline {
                     echo "Multiline shell steps works too"
                     '''
              }
+         }
+         stage('Lint HTML') {
+              steps {
+                  sh 'tidy -q -e *.html'
+              }
          }
          stage('Upload to AWS') {
             steps {
